@@ -1,5 +1,5 @@
 from datetime import datetime
-
+from django.db.models import QuerySet
 from django.db import transaction
 from db.models import Order, Ticket, User, MovieSession
 
@@ -36,7 +36,7 @@ def create_order(
 
 def get_orders(
         username: str = None
-) -> None:
+) -> QuerySet :
     if username:
         return Order.objects.filter(user__username=username)
     return Order.objects.all()
